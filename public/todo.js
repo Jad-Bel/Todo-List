@@ -1,40 +1,55 @@
-document.getElementById('addTodoTask').addEventListener("click", function () {
-    let taskInput = document.getElementById('todoInput');
-    let taskContent = taskInput.value.trim();
-
-    if (taskContent !== "") { //to check if the input in sot empty
-        let newTask = document.createElement('li');
-        newTask.textContent = taskContent;
-        newTask.className = 'p-2 bg-gray-100 rounded mb-2'; //styling the style ticket
-
-        document.getElementById('todoList').appendChild(newTask);
-        taskInput.value = ""; //clear the inout after submiting the task to re-write another task
-    }
+document.getElementById('openModal').addEventListener("click", function () {
+    document.getElementById('modal').style.display = 'block';
 });
 
-document.getElementById('addDoingTask').addEventListener("click", function () {
-    let taskInput = document.getElementById('doingInput');
-    let taskContent = taskInput.value.trim();
-
-    if (taskContent !== "") { 
-        let newTask = document.createElement('li');
-        newTask.textContent = taskContent;
-        newTask.className = 'p-2 bg-gray-100 rounded mb-2';
-
-        document.getElementById('doingList').appendChild(newTask);
-        taskInput.value = ""; 
-    }
+document.getElementById('closeModal').addEventListener("click", function () {
+    document.getElementById('modal').style.display = 'none';
 });
 
-document.getElementById('addDoneTask').addEventListener("click", function () {
-    let taskInput = document.getElementById('doneInput');
-    let taskContent = taskInput.value.trim();
 
-    if (taskContent !== "") { 
+document.getElementById('submitTask').addEventListener("click", function () {
+
+    let taskTitle = document.getElementById('modalTaskTitle').value.trim();
+    let taskDescription = document.getElementById('modalTaskDescription').value.trim();
+    let taskDate = document.getElementById('modalTaskDate').value;
+    let taskStatus = document.getElementById('modalTaskStatus').value;
+    let taskType = document.getElementById('modalTaskType').value;
+    let priority = document.getElementById('modalTaskStatus').value;
+
+    if (taskTitle !== "") {
         let newTask = document.createElement('li');
-        newTask.textContent = taskContent;
-        newTask.className = 'p-2 bg-gray-100 rounded mb-2';
-        document.getElementById('doneList').appendChild(newTask);
-        taskInput.value = "";
+        newTask.className = 'bg-gray-100 rounded-2xl mb-2 p-2  border-2'; 
+
+        if (priority === "P1") {
+            newTask.classList.add("border-red-500");
+        } else if (priority === "P2") {
+            newTask.classList.add("border-orange-500");
+        } else if (priority === "P3") {
+            newTask.classList.add("border-green-500");
+        }
+
+
+        newTask.innerHTML = `
+            <h3 class="font-semibold text-center pr-2">${taskTitle}</h3>
+            <p class="text-left pr-2">${taskDescription}</p>
+            <p class="text-left pr-2"><strong>Date:</strong> ${taskDate}</p>
+            <p class="text-left pr-2"><strong>Status:</strong> ${taskStatus}</p>
+        `;
+
+        if(taskType === "todo") {
+            document.getElementById('todoList').appendChild(newTask);
+        } else if (taskType === "doing") {
+            document.getElementById('doingList').appendChild(newTask);
+        } else if (taskType === "Done"){
+            document.getElementById('doneList').appendChild(newTask);
+        }
+
+        document.getElementById('modalTaskTitle').value = "";
+        document.getElementById('modalTaskDescription').value = "";
+        document.getElementById('modalTaskDate').value = "";
+        document.getElementById('modalTaskStatus').value = "P1";
+        document.getElementById('modalTaskType').value = "todo";
+
+        document.getElementById('modal').style.display = 'none'; 
     }
 });

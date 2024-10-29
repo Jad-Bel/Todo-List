@@ -14,61 +14,65 @@
         <a href="#" class="text-2xl font-semibold">To-Do App</a>
         
         <nav class="flex gap-6">
-            <a href="#" class="hover:text-blue-400 flex items-center">
-                Home
-            </a>
-            <a href="#" class="hover:text-blue-400 flex items-center">
-                Tasks
-            </a>
-            <a href="#" class="hover:text-blue-400 flex items-center">
-                <i class="fas fa-bars text-xl"></i>
-            </a>
+            <button id="openModal" class=" p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600">ADD</button>
         </nav>
     </header>
 
-<div id="modal" class="bg-slate-400 w-auto absolute bottom-[25%] left-[40%] flex p-6 rounded-3xl">
-    <div class="">
-        <div class="">
-            <h2>Title</h2>
-            <input type="text" class="rounded border-solid bg-slate-200 placeholder:p-3">
-        </div>
-
+    <div id="modal" class="bg-slate-400 w-auto absolute bottom-[25%] left-[40%] p-6 rounded-3xl hidden">
         <div>
-            <h2>Desctiption</h2>
-            <textarea class="w-48 rounded bg-slate-200"></textarea>
-        </div>
+            <div class="flex justify-end">
+                <button id="closeModal" class="bg-red-500 rounded-lg w-8 flex justify-center items-center">
+                    <span class="icon-[proicons--cancel]" style="width: 1.2em; height: 1.2em;"></span>
+                </button>
+            </div>
+    
+            <div>
+                <h2 class="font-semibold">Title</h2>
+                <input type="text" id="modalTaskTitle" class="rounded border-solid bg-slate-200 placeholder:p-3">
+            </div>
+    
+            <div>
+                <h2 class="font-semibold">Description</h2>
+                <textarea id="modalTaskDescription" class="w-48 rounded bg-slate-200"></textarea>
+            </div>
+    
+            <div>
+                <h2 class="font-semibold">Date</h2>
+                <input type="date" id="modalTaskDate" class="rounded bg-slate-200">
+            </div>
+    
+            <div>
+                <h2 class="font-semibold">Status</h2>
+                <select id="modalTaskStatus" class="w-16 rounded-2xl bg-slate-200">
+                    <option value="P1">P1</option>
+                    <option value="P2">P2</option>
+                    <option value="P3">P3</option>
+                </select>
+            </div>
 
-        <div>
-            <h2>Date</h2>
-            <input type="date" class="rounded bg-slate-200">
-        </div>
-
-        <div>
-            <h2>Status</h2>
-            <select class="w-16 rounded bg-slate-200">
-                <option value="P1">P1</option>
-                <option value="P2">P2</option>
-                <option value="P3">P3</option>
-            </select>
-        </div>
-
-        <div>
-            
+            <div>
+                <h2 class="font-semibold">Type</h2>
+                <select id="modalTaskType" class="w-16 h-6 rounded bg-slate-200 text-sm">
+                    <option value="todo">To-Do</option>
+                    <option value="doing">Doing</option>
+                    <option value="Done">Done</option>
+                </select>
+            </div>
+    
+            <div class="flex justify-end">
+                <button id="submitTask" class="bg-lime-500 rounded-lg w-8 flex justify-center items-center">
+                    <span class="icon-[proicons--checkmark]" style="width: 1.2rem; height: 1.2rem;"></span>
+                </button>
+            </div>
         </div>
     </div>
-</div>
+    
 
-    <!-- <section class="flex gap-10 py-5 flex-wrap md:justify-around lg:justify-around h-[89vh]">
+    <section class="flex gap-10 py-5 flex-wrap md:justify-around lg:justify-around h-[89vh]">
          <div class="lg:flex items-center" id="todo">
              <div class="text-center">
-                 <h2 class="text-lg font-semibold mb-3">To-Do</h2>
+                 <h2 class="text-lg font-semibold mb-3 border-b-2 border-red-500">To-Do</h2>
                  <div class="bg-white shadow-lg rounded-lg p-6 w-80">
-                     <input type="text" id="todoInput" class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter a new task">
-                     <div class="flex justify-between">
-                        <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addSingleTodoTask">Single Add</button>
-                        <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addMultipleTodoTask">Multiple Add</button>
-                     </div>
-
                      <ul id="todoList" class="mt-4 space-y-2"></ul>
                  </div>
              </div>
@@ -76,13 +80,8 @@
 
         <div class="lg:flex items-center" id="doing">
             <div class="text-center">
-                <h2 class="text-lg font-semibold mb-3">Doing</h2>
+                <h2 class="text-lg font-semibold mb-3 border-b-2 border-orange-500">Doing</h2>
                 <div class="bg-white shadow-lg rounded-lg p-6 w-80">
-                    <input type="text" id="doingInput" class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter a new task">
-                    <div class="flex justify-between">
-                        <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addSingleDoingTask">Single Add</button>
-                        <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addMultipleDoingTask">Multiple Add</button>
-                    </div>
                     <ul id="doingList" class="mt-4 space-y-2"></ul>
                 </div>
             </div>
@@ -90,18 +89,13 @@
 
          <div class="lg:flex lg:items-center" id="done">
              <div class="text-center">
-                 <h2 class="text-lg font-semibold mb-3">Done</h2>
+                 <h2 class="text-lg font-semibold mb-3 border-b-2 border-green-500">Done</h2>
                  <div class="bg-white shadow-lg rounded-lg p-6 w-80">
-                     <input type="text" id="doneInput" class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter a new task">
-                    <div class="flex justify-between">
-                         <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addSingleDoneTask">Single Add</button>
-                         <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addMultipleDoneTask">Multiple Add</button>
-                    </div>
                         <ul id="doneList" class="mt-4 space-y-2"></ul>
                  </div>
              </div>
          </div>
-    </section> -->
+    </section>
 
     <script src="todo.js"></script>
 </body>
