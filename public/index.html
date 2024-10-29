@@ -4,8 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-    
+<body class="min-h-screen bg-gray-">
+
+    <header class="w-full h-16 bg-gray-800 text-white flex items-center justify-between px-8">
+        <a href="#" class="text-2xl font-semibold">To-Do App</a>
+        
+        <nav class="flex gap-6">
+            <a href="#" class="hover:text-blue-400 flex items-center">
+                Home
+            </a>
+            <a href="#" class="hover:text-blue-400 flex items-center">
+                Tasks
+            </a>
+            <a href="#" class="hover:text-blue-400 flex items-center">
+                <i class="fas fa-bars text-xl"></i>
+            </a>
+        </nav>
+    </header>
+
+    <section class="flex gap-10 py-5 flex-wrap md:justify-around lg:justify-around h-[89vh]">
+        <!-- todo card -->
+         <div class="lg:flex items-center" id="todo">
+             <div class="text-center">
+                 <h2 class="text-lg font-semibold mb-3">To-Do</h2>
+                 <div class="bg-white shadow-lg rounded-lg p-6 w-80">
+                     <input type="text" id="todoInput" class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter a new task">
+                     <div class="flex justify-between">
+                        <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addSingleTodoTask">Single Add</button>
+                        <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addMultipleTodoTask">Multiple Add</button>
+                     </div>
+
+                     <ul id="todoList" class="mt-4 space-y-2"></ul>
+                 </div>
+             </div>
+         </div>
+
+        <!-- doing card -->
+        <div class="lg:flex items-center" id="doing">
+            <div class="text-center">
+                <h2 class="text-lg font-semibold mb-3">Doing</h2>
+                <div class="bg-white shadow-lg rounded-lg p-6 w-80">
+                    <input type="text" id="doingInput" class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter a new task">
+                    <div class="flex justify-between">
+                        <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addSingleDoingTask">Single Add</button>
+                        <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addMultipleDoingTask">Multiple Add</button>
+                    </div>
+                    <ul id="doingList" class="mt-4 space-y-2"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- done card -->
+         <div class="lg:flex lg:items-center" id="done">
+             <div class="text-center">
+                 <h2 class="text-lg font-semibold mb-3">Done</h2>
+                 <div class="bg-white shadow-lg rounded-lg p-6 w-80">
+                     <input type="text" id="doneInput" class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter a new task">
+                    <div class="flex justify-between">
+                         <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addSingleDoneTask">Single Add</button>
+                         <button class="w-[45%] p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600" id="addMultipleDoneTask">Multiple Add</button>
+                    </div>
+                        <ul id="doneList" class="mt-4 space-y-2"></ul>
+                 </div>
+             </div>
+         </div>
+    </section>
+
+    <script src="todo.js"></script>
 </body>
 </html>
