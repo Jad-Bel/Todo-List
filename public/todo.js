@@ -42,7 +42,7 @@ document.getElementById('submitTask').addEventListener("click", function () {
 
 
         newTask.innerHTML = `
-        <div class="">
+        <div>
             <h3 class="font-semibold text-center pr-2">${taskTitle}</h3>
             <div>
                 <p class="text-left pr-2">${taskDescription}</p>
@@ -50,7 +50,9 @@ document.getElementById('submitTask').addEventListener("click", function () {
                 <p class="text-left pr-2"><strong>Status:</strong> ${taskStatus}</p>
             </div>
             <div class="flex justify-end">
-                <span class="icon-[proicons--pencil]  mr-2 mb-2 cursor-pointer"></span>
+                <button onclick="deleteTask(this)" class="text-red-500 pr-2 w-full">
+                    <span class="icon-[mdi--delete]" style="width: 1.2em; height: 1.2em;"></span>
+                </button>
             </div>
         </div>
         `;
@@ -81,3 +83,12 @@ document.getElementById('submitTask').addEventListener("click", function () {
         document.getElementById('modal').style.display = 'none'; 
     }
 });
+
+function deleteTask(button) {
+    let taskElement = button.closest('li');
+    if(taskElement) {
+        taskElement.remove();
+    } else {
+        alert ("No task to delete");
+    }
+}
