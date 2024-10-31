@@ -1,4 +1,4 @@
-let taskCounter = 1;
+let taskCounter = {todo: 0, doing: 0, done: 0};
 
 document.getElementById('openModal').addEventListener("click", function () {
     document.getElementById('modal').style.display = 'block';
@@ -13,7 +13,7 @@ function clearModalFields() {
     document.getElementById('modalTaskTitle').value = "";
     document.getElementById('modalTaskDescription').value = "";
     document.getElementById('modalTaskDate').value = "";
-    document.getElementById('modalTastStatus').value = "P1";
+    document.getElementById('modalTaskStatus').value = "";
     document.getElementById('modalTaskStatus').value = "todo";
     document.getElementById('submitTask').dataset.editing = "false"
 }
@@ -44,51 +44,57 @@ document.getElementById('submitTask').addEventListener("click", function () {
         newTask.innerHTML = `
         <div>
             <h3 class="font-semibold text-center pr-2">${taskTitle}</h3>
-            <div>
-                <p class="text-left pr-2">${taskDescription}</p>
-                <p class="text-left pr-2"><strong>Date:</strong> ${taskDate}</p>
-                <p class="text-left pr-2"><strong>Status:</strong> ${taskStatus}</p>
-            </div>
-            <div class="flex justify-end">
-                <button onclick="deleteTask(this)" class="text-red-500 pr-2 w-full">
-                    <span class="icon-[mdi--delete]" style="width: 1.2em; height: 1.2em;"></span>
-                </button>
-            </div>
+        <div>
+            <p class="text-left pr-2">${taskDescription}</p>
+            <p class="text-left pr-2"><strong>Date:</strong> ${taskDate}</p>
+            <p class="text-left pr-2"><strong>Status:</strong> ${taskStatus}</p>
         </div>
+        <div class="flex justify-end">
+            <button onclick="deleteTask(this)" id="deleteButton" class="text-red-500 pr-2 w-full text-right">
+                <span class="icon-[mdi--delete]"></span>
+            </button>
+        </div>
+    </div>
         `;
 
-        taskCounter++;
 
         let taskList;
         if(taskType === "todo") {
             taskList = document.getElementById('todoList').appendChild(newTask);
+            taskCounter.todo++;
         } else if (taskType === "doing") {
             taskList = document.getElementById('doingList').appendChild(newTask);
+            taskCounter.doing++;
         } else if (taskType === "Done"){
             taskList = document.getElementById('doneList').appendChild(newTask);
+            taskCounter.done++;
         }
 
-        if (taskStatus === "P1") {
-            taskList.prepend(newTask);
-        } else {
-            taskList.appendChild(newTask);
-        }
-
-        document.getElementById('modalTaskTitle').value = "";
-        document.getElementById('modalTaskDescription').value = "";
-        document.getElementById('modalTaskDate').value = "";
-        document.getElementById('modalTaskStatus').value = "P1";
-        document.getElementById('modalTaskType').value = "todo";
+        updateTaskCounters();
 
         document.getElementById('modal').style.display = 'none'; 
     }
+
+    updateTaskCounters();
 });
 
-function deleteTask(button) {
-    let taskElement = button.closest('li');
-    if(taskElement) {
+function deleteTask(deleteButton) {
+    let taskElement = deleteButton.closest('li');
         taskElement.remove();
-    } else {
-        alert ("No task to delete");
-    }
+
+        if (taskType === "todo") {
+            taskCounter.todo--;
+        } else if (taskType === "doing") {
+            taskCounter.doing--;
+        } else if (taskType === "done") {
+            taskCounter.done--;
+        }
+
+    updateTaskCounters();
+}
+
+function updateTaskCounters () {
+    document.getElementById("todoTaskCounter").textContent = taskCounter.todo;
+    document.getElementById("doingTaskCounter").textContent = taskCounter.doing;
+    document.getElementById("doneTaskCounter").textContent = taskCounter.done;
 }

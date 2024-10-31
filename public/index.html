@@ -68,10 +68,13 @@
     </div>
     
 
-    <section class="flex gap-10 py-5 flex-wrap md:justify-around lg:justify-around h-[89vh]">
+    <section class="flex gap-10 py-5 flex-wrap md:flex justify-around lg:justify-around h-[89vh]">
          <div class="lg:flex items-center" id="todo">
              <div class="text-center">
-                 <h2 class="text-lg font-semibold mb-3 border-b-2 border-red-500">To-Do</h2>
+                <div class="flex items-center">
+                    <h2 class="w-16 text-lg font-semibold ml-5 text-left border-r-2">To-Do</h2>
+                    <h2 class="ml-2 font-semibold" id="todoTaskCounter">0</h2>
+                </div>
                  <div class="bg-white shadow-lg rounded-lg p-6 w-80">
                      <ul id="todoList" class="mt-4 space-y-2 overflow-y-scroll h-80">
                      </ul>
@@ -79,9 +82,12 @@
              </div>
          </div>
 
-        <div class="lg:flex items-center" id="doing">
+        <div class="md:flex justify-center lg:flex items-center" id="doing">
             <div class="text-center">
-                <h2 class="text-lg font-semibold mb-3 border-b-2 border-orange-500">Doing</h2>
+                <div class="flex items-center">
+                    <h2 class="w-16 text-lg font-semibold ml-5 text-left border-r-2">Doing</h2>
+                    <h2 class="ml-2 font-semibold" id="doingTaskCounter">0</h2>
+                </div>
                 <div class="bg-white shadow-lg rounded-lg p-6 w-80">
                     <ul id="doingList" class="mt-4 space-y-2 overflow-y-scroll h-80"></ul>
                 </div>
@@ -90,7 +96,10 @@
 
          <div class="lg:flex lg:items-center" id="done">
              <div class="text-center">
-                 <h2 class="text-lg font-semibold mb-3 border-b-2 border-green-500">Done</h2>
+                <div class="flex items-center">
+                    <h2 class="w-16 text-lg font-semibold ml-5 text-left border-r-2">Done</h2>
+                    <h2 class="ml-2 font-semibold" id="doneTaskCounter">0</h2>
+                </div>
                  <div class="bg-white shadow-lg rounded-lg p-6 w-80">
                         <ul id="doneList" class="mt-4 space-y-2 overflow-y-scroll h-80"></ul>
                  </div>
@@ -98,6 +107,7 @@
          </div>
     </section>
 
+  
     
 
     <script src="todo.js"></script>
