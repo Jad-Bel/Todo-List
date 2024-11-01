@@ -1,87 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
-    <link rel="stylesheet" href="/src/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body class="min-h-screen">
-
-    <header class="w-full h-16 bg-gray-800 text-white flex items-center justify-between px-8">
-        <a href="#" class="text-2xl font-semibold">To-Do App</a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Todo List</title>
+        <link rel="stylesheet" href="/src/output.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body class="min-h-screen">
         
-        <nav class="flex gap-6">
-            <button id="openModal" class=" p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600">ADD</button>
-        </nav>
-    </header>
-
-    <div id="modal" class="bg-slate-400 w-auto absolute bottom-[25%] left-[40%] p-6 rounded-3xl hidden">
-        <div>
-            <div class="flex justify-end">
-                <button id="closeModal" class="bg-red-500 rounded-lg w-8 flex justify-center items-center">
-                    <span class="icon-[proicons--cancel]" style="width: 1.2em; height: 1.2em;"></span>
-                </button>
-            </div>
-    
+        <header class="w-full h-16 bg-gray-800 text-white flex items-center justify-between px-8">
+            <a href="#" class="text-2xl font-semibold">To-Do App</a>
+            
+            <nav class="flex gap-6">
+                <button id="openModal" class=" p-2 bg-gray-400 text-white font-semibold rounded hover:bg-blue-600">ADD +</button>
+            </nav>
+        </header>
+        
+        
+        <div id="modal" class="bg-slate-400 w-auto absolute bottom-[25%] left-[40%] p-6 rounded-3xl hidden">
+        
             <div>
-                <h2 class="font-semibold">Title</h2>
-                <input type="text" id="modalTaskTitle" class="rounded border-solid bg-slate-200 placeholder:p-3">
-            </div>
-    
-            <div>
-                <h2 class="font-semibold">Description</h2>
-                <textarea id="modalTaskDescription" class="w-48 rounded bg-slate-200"></textarea>
-            </div>
-    
-            <div>
-                <h2 class="font-semibold">Date</h2>
-                <input type="date" id="modalTaskDate" class="rounded bg-slate-200">
-            </div>
-    
-            <div>
-                <h2 class="font-semibold">Status</h2>
-                <select id="modalTaskStatus" class="w-16 rounded-2xl bg-slate-200">
-                    <option value="P1">P1</option>
-                    <option value="P2">P2</option>
-                    <option value="P3">P3</option>
-                </select>
-            </div>
-
-            <div>
-                <h2 class="font-semibold">Type</h2>
-                <select id="modalTaskType" class="w-16 h-6 rounded bg-slate-200 text-sm">
-                    <option value="todo">To-Do</option>
-                    <option value="doing">Doing</option>
-                    <option value="Done">Done</option>
-                </select>
-            </div>
-    
-            <div class="flex justify-end">
-                <button id="submitTask" class="bg-lime-500 rounded-lg w-8 flex justify-center items-center">
-                    <span class="icon-[proicons--checkmark]" style="width: 1.2rem; height: 1.2rem;"></span>
-                </button>
+                <div class="flex justify-end">
+                    <button id="closeModal" class="bg-red-500 rounded-lg w-8 flex justify-center items-center">
+                        <span class="icon-[proicons--cancel]" style="width: 1.2em; height: 1.2em;"></span>
+                    </button>
+                </div>
+        
+                <div>
+                    <h2 class="font-semibold">Title</h2>
+                    <input type="text" id="modalTaskTitle" class="rounded border-solid bg-slate-200 placeholder:p-3">
+                </div>
+        
+                <div>
+                    <h2 class="font-semibold">Description</h2>
+                    <textarea id="modalTaskDescription" class="w-48 rounded bg-slate-200"></textarea>
+                </div>
+        
+                <div>
+                    <h2 class="font-semibold">Date</h2>
+                    <input type="date" id="modalTaskDate" class="rounded bg-slate-200">
+                </div>
+        
+                <div>
+                    <h2 class="font-semibold">Status</h2>
+                    <select id="modalTaskStatus" class="w-16 rounded-2xl bg-slate-200">
+                        <option value="P1">P1</option>
+                        <option value="P2">P2</option>
+                        <option value="P3">P3</option>
+                    </select>
+                </div>
+        
+                <div>
+                    <h2 class="font-semibold">Type</h2>
+                    <select id="modalTaskType" class="w-16 h-6 rounded bg-slate-200 text-sm">
+                        <option value="todo">To-Do</option>
+                        <option value="doing">Doing</option>
+                        <option value="Done">Done</option>
+                    </select>
+                </div>
+        
+                <div class="flex justify-end">
+                    <button id="submitTask" class="bg-lime-500 rounded-lg w-8 flex justify-center items-center">
+                        <span class="icon-[proicons--checkmark]" style="width: 1.2rem; height: 1.2rem;"></span>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
     
-
+        
     <section class="flex gap-10 py-5 flex-wrap md:flex justify-around lg:justify-around h-[89vh]">
-         <div class="lg:flex items-center" id="todo">
-             <div class="text-center">
+        <div class="lg:flex items-center" id="todo">
+            <div class="text-center">
                 <div class="flex items-center">
                     <h2 class="w-16 text-lg font-semibold ml-5 text-left border-r-2">To-Do</h2>
                     <h2 class="ml-2 font-semibold" id="todoTaskCounter">0</h2>
                 </div>
-                 <div class="bg-white shadow-lg rounded-lg p-6 w-80">
-                     <ul id="todoList" class="mt-4 space-y-2 overflow-y-scroll h-80">
-                     </ul>
-                 </div>
-             </div>
-         </div>
-
+                <div class="bg-white shadow-lg rounded-lg p-6 w-80">
+                    <ul id="todoList" class="mt-4 space-y-2 overflow-y-scroll h-80">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
         <div class="md:flex justify-center lg:flex items-center" id="doing">
             <div class="text-center">
                 <div class="flex items-center">
@@ -93,21 +95,20 @@
                 </div>
             </div>
         </div>
-
-         <div class="lg:flex lg:items-center" id="done">
-             <div class="text-center">
+        
+        <div class="lg:flex lg:items-center" id="done">
+            <div class="text-center">
                 <div class="flex items-center">
                     <h2 class="w-16 text-lg font-semibold ml-5 text-left border-r-2">Done</h2>
                     <h2 class="ml-2 font-semibold" id="doneTaskCounter">0</h2>
                 </div>
-                 <div class="bg-white shadow-lg rounded-lg p-6 w-80">
-                        <ul id="doneList" class="mt-4 space-y-2 overflow-y-scroll h-80"></ul>
-                 </div>
-             </div>
-         </div>
+                <div class="bg-white shadow-lg rounded-lg p-6 w-80">
+                    <ul id="doneList" class="mt-4 space-y-2 overflow-y-scroll h-80"></ul>
+                </div>
+            </div>
+        </div>
     </section>
-
-  
+    
     
     <script src="todo.js"></script>
     <script src="sorting.js"></script>

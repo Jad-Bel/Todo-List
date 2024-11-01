@@ -47,7 +47,7 @@ document.getElementById('submitTask').addEventListener("click", function () {
         <div>
             <p class="text-left pr-2">${taskDescription}</p>
             <p class="text-left pr-2"><strong>Date:</strong> ${taskDate}</p>
-            <p class="text-left pr-2"><strong>Status:</strong> ${taskStatus}</p>
+            <p class="text-left pr-2" data-priority="${taskStatus}"><strong>Status:</strong> ${taskStatus}</p>
         </div>
         <div class="flex justify-end">
             <button onclick="deleteTask(this)" id="deleteButton" class="text-red-500 pr-2 w-full text-right">
@@ -71,6 +71,7 @@ document.getElementById('submitTask').addEventListener("click", function () {
         }
 
         updateTaskCounters();
+        sortTasks();
 
         document.getElementById('modal').style.display = 'none'; 
     }
@@ -99,35 +100,51 @@ function updateTaskCounters () {
     document.getElementById("doneTaskCounter").textContent = taskCounter.done;
 }
 
+// function sortTasks () {
+//     const priorityOrder = {P1: 1, P2: 2, P3: 3};
+//     let tasks = document.querySelectorAll("todoList, doingList, doneList")
+
+//     if (tasks.length < 2) {
+//         return;
+//     }
+
+//     for(let i = 0; i < tasks.length - 1; i++) {
+//         for (let j = 0; j < newTask.length - i - 1; j++) {
+//             const currentTask = tasks[j];
+//             const nextTask = tasks[j + 1];
+//         }
+
+//         if (priorityOrder[currentTask.priority > nextTask.priority]) {
+//             let temp = tasks[j];
+//             tasks[j] = tasks[j + 1];
+//             tasks[j + 1] = temp;
+//         }
+
+//         else if (priorityOrder[currentTask.priority === nextTask.priority]){
+//             const currentTaskDate = new Date(currentTask.date);
+//             const nextTaskDate = new Date(nextTask.date);
+
+//             if (currentTaskDate > nextTaskDate) {
+//                 let temp = tasks[j];
+//                 tasks[j] = tasks[j + 1];
+//                 tasks[j + 1] = temp
+//             }
+//         }
+//     }
+// }
+
 function sortTasks () {
     const priorityOrder = {P1: 1, P2: 2, P3: 3};
+    let tasks = document.querySelectorAll("#todoList li, #doingList li, #doneList li");
 
-    if (newTask.length < 2) {
-        return;
-    }
+    tasks.sort((a, b) => {
+        let currentTask = a.getAttribute('data-priority');
+        let nextTask = b.getAttribute('data-priority');
 
-    for(let i = 0; i < newTask.length - 1; i++) {
-        for (let j = 0; j < newTask.length - i - 1; j++) {
-            const currentTask = newTask[j];
-            const nextTask = newTask[j + 1];
+        if (priorityOrder[currentTask] < priorityOrder[nextTask]) {
+            currentTask - nextTask;
+        } else if (priorityOrder[currentTask] > priorityOrder[nextTask]) {
+            nextTask - currentTask;
         }
-
-        if (priorityOrder[currentTask.priority > currentTask.priority]) {
-            let temp = newTask[j];
-            newTask[j] = newTask[j + 1];
-            newTask[j + 1] = temp;
-        }
-
-        else if (priorityOrder[currentTask.priority === nextTask.priority]){
-            const currentTaskDate = new Date(currentTask.date);
-            const nextTaskDate = new Date(nextTask.date);
-
-            if (currentTaskDate > nextTaskDate) {
-                let temp = newTask[j];
-                newTask[j] = newTask[j + 1];
-                temp = newTask[j + 1]
-            }
-        }
-    }
-    console.log(currentTask);
+    })
 }
