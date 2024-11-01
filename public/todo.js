@@ -100,51 +100,54 @@ function updateTaskCounters () {
     document.getElementById("doneTaskCounter").textContent = taskCounter.done;
 }
 
-// function sortTasks () {
-//     const priorityOrder = {P1: 1, P2: 2, P3: 3};
-//     let tasks = document.querySelectorAll("todoList, doingList, doneList")
-
-//     if (tasks.length < 2) {
-//         return;
-//     }
-
-//     for(let i = 0; i < tasks.length - 1; i++) {
-//         for (let j = 0; j < newTask.length - i - 1; j++) {
-//             const currentTask = tasks[j];
-//             const nextTask = tasks[j + 1];
-//         }
-
-//         if (priorityOrder[currentTask.priority > nextTask.priority]) {
-//             let temp = tasks[j];
-//             tasks[j] = tasks[j + 1];
-//             tasks[j + 1] = temp;
-//         }
-
-//         else if (priorityOrder[currentTask.priority === nextTask.priority]){
-//             const currentTaskDate = new Date(currentTask.date);
-//             const nextTaskDate = new Date(nextTask.date);
-
-//             if (currentTaskDate > nextTaskDate) {
-//                 let temp = tasks[j];
-//                 tasks[j] = tasks[j + 1];
-//                 tasks[j + 1] = temp
-//             }
-//         }
-//     }
-// }
-
 function sortTasks () {
     const priorityOrder = {P1: 1, P2: 2, P3: 3};
-    let tasks = document.querySelectorAll("#todoList li, #doingList li, #doneList li");
+    
+    let tasks = (document.querySelectorAll("#todoList li, #doingList li, #doneList li"));
 
-    tasks.sort((a, b) => {
-        let currentTask = a.getAttribute('data-priority');
-        let nextTask = b.getAttribute('data-priority');
 
-        if (priorityOrder[currentTask] < priorityOrder[nextTask]) {
-            currentTask - nextTask;
-        } else if (priorityOrder[currentTask] > priorityOrder[nextTask]) {
-            nextTask - currentTask;
+    for (let i = 0; i < tasks.length - 1; i++) {
+        for (let j = 0; j < tasks.length - i - 1; j++) {
+            const currentTask = tasks[j];
+            const nextTask = tasks[j + 1];
         }
-    })
+
+        const currentPriority = currentTask.getAttribute("data-priority");
+        const nextPriority = nextTask.getAttribute("data-property");
+        const currentDate = new Date(currentTasl.getAttribute("data-date"));
+        const nextDate = new Date(nextTask.getAttribute("data-date"));
+
+        if (priorityOrder[currentTask.priority > nextTask.priority]) {
+            let temp = tasks[j];
+            tasks[j] = tasks[j + 1];
+            tasks[j + 1] = temp;
+        }
+
+        else if (priorityOrder[currentTask.priority === nextTask.priority]){
+
+            if (currentTaskDate > nextTaskDate) {
+                let temp = tasks[j];
+                tasks[j] = tasks[j + 1];
+                tasks[j + 1] = temp
+            }
+        }
+    }
 }
+
+// function sortTasks () {
+//     const priorityOrder = {P1: 1, P2: 2, P3: 3};
+//     let tasks = Array.from(document.querySelectorAll("#todoList li, #doingList li, #doneList li"));
+
+//     tasks.sort((a, b) => {
+//         let currentTask = a.getAttribute('data-priority');
+//         let nextTask = b.getAttribute('data-priority');
+
+//         if (priorityOrder[currentTask] < priorityOrder[nextTask]) {
+//             return -1;
+//         } else if (priorityOrder[currentTask] > priorityOrder[nextTask]) {
+//             return -1;
+//         } else {
+//             let currentTaskDate = new Date(a.getAttribute)
+//         }
+//     })
+// }
